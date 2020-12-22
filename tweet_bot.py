@@ -68,7 +68,7 @@ def unfollow_who_dont_follow_me():
             if friend not in followers:
                 api.destroy_friendship(friend)
                 print(f"Unfollow user id : {friend}")
-                sleep(randint(900,2600))
+                sleep(randint(2000,4600))
 
 
 if __name__ == "__main__":

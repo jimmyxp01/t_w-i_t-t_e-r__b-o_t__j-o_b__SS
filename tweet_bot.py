@@ -7,7 +7,7 @@ from os import environ
 from multiprocessing import Process
 
 CONSUMER_KEY = environ['CONSUMER_KEY']
-CONSUMER_SECRET = environ['CONSUMER_SEC']
+CONSUMER_SECRET = environ['CONSUMER_SECRET']
 ACCESS_KEY=environ['ACCESS_KEY']
 ACCESS_SECRET=environ['ACCESS_SECRET']
 

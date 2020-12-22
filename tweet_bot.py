@@ -47,7 +47,7 @@ def like_retweet():
                     api.create_friendship(screen_name=tweet.author.screen_name)
                     print(">>>>==== Followed ====<<<<")
                     print("sleep for a bit")
-                    sleep(randint(10,20))
+                    sleep(randint(150,600))
 
                 except tweepy.TweepError as e:
                     print(e.reason)
@@ -68,7 +68,7 @@ def unfollow_who_dont_follow_me():
             if friend not in followers:
                 api.destroy_friendship(friend)
                 print(f"Unfollow user id : {friend}")
-                sleep(randint(1200,3600))
+                sleep(randint(900,2600))
 
 
 if __name__ == "__main__":

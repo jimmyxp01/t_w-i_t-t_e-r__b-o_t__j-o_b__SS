@@ -35,7 +35,7 @@ tags=["#photographylovers", "#hautsdefrance",
 def like_retweet():
     while True:
         random.shuffle(tags)
-        n_tweet=randint(50,205)
+        n_tweet=randint(20,50)
         for search in tags:
             for tweet in tweepy.Cursor(api.search, search).items(n_tweet):
                 try:
@@ -50,7 +50,7 @@ def like_retweet():
                     api.create_friendship(screen_name=tweet.author.screen_name)
                     print(">>>>==== Followed ====<<<<")
                     print("sleep for a bit")
-                    sleep(randint(150,600))
+                    sleep(randint(120,400))
 
                 except tweepy.TweepError as e:
                     print(e.reason)
@@ -71,7 +71,7 @@ def unfollow_who_dont_follow_me():
             if friend not in followers:
                 api.destroy_friendship(friend)
                 print(f"Unfollow user id : {friend}")
-                sleep(randint(2000,4600))
+                sleep(randint(100,300))
 
 
 if __name__ == "__main__":

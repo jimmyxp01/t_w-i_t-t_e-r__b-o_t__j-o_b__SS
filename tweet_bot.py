@@ -23,13 +23,14 @@ tags=["#photographylovers", "#hautsdefrance",
 "#TwitterNatureCommunity", "#ePHOTOzine",
 "#byroberteklund","#sonyalphaphotography", "#sonyalphaphotos", "#roberteklund", "#stockholm", "#sweden", "#sergelstorg", "#stockholmcity",
 "#cityphotography", "#cityphoto", "#stockholmphoto", "#stockholmphotography", "#streetphotography", "#wetstreets", "#nofilter",
-"#FranceMagique",  "#nature", "#jobs", "#sunset", "#autumncolours", "#fallcolors",
+"#FranceMagique",  "#nature", "#sunset", "#autumncolours", "#fallcolors",
 "#photoimaginart", "#photooftheday", "#stilllife","#PhotoOfTheDay", "#PicOfTheDay", "#InstaLike", "#City", "#Skyline", 
 "#Skyscraper", "#Design", "#instagood", "#happy", "#travel", "#fly", "#2021","#goodmorning",
 "#stilllifepainting", "#stilllifephotos", "#stilllifephotography", "#artphoto",
 "#artphotography", "#fineartphotography", "#fineartphotos", "#photography", "#PHOTOS",
 "#bestphoto", "#photoart", "#creativephotos", "#ArtLovers", "#photo",
-"#photographie", "#landscapephotography"]
+"#photographie", "#landscapephotography","#BeKind", "#HOPE", "#inmygarden",  "#mondaythoughts", "#birdwatching", "#beautiful",
+"#blessed", "#ThePhotoHour"]
 
 
 def like_retweet():

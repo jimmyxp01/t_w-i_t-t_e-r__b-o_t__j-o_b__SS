@@ -40,23 +40,29 @@ def like_retweet():
         for search in tags:
             for tweet in tweepy.Cursor(api.search, search).items(n_tweet):
                 try:
-                    tweet.favorite()
-                    print(">>>>>==== Tweet Liked ====<<<<<<")
-                    print("sleep for bit")
-                    sleep(randint(3,7))   
-                    tweet.retweet()
-                    print(">>>>==== ReTweet ====<<<<<")
-                    print("sleep for bit")
-                    sleep(randint(3,7))
-                    api.create_friendship(screen_name=tweet.author.screen_name)
-                    print(">>>>==== Followed ====<<<<")
-                    print("sleep for a bit")
-                    sleep(randint(120,400))
-
+                    user_id=tweet.user.id
+                    author_id=tweet.author.id
+                    i_followed=api.followers_ids(api.me().id)
+                    if user_id or author_id not in i_followed:
+                        print("this peson not in I Followed list")
+                        tweet.favorite()
+                        print(">>>>>==== Tweet Liked ====<<<<<<")
+                        print("sleep for bit")
+                        sleep(randint(3,7))   
+                        tweet.retweet()
+                        print(">>>>==== ReTweet ====<<<<<")
+                        print("sleep for bit")
+                        sleep(randint(3,7))
+                        api.create_friendship(screen_name=tweet.author.screen_name)
+                        print(">>>>==== Followed ====<<<<")
+                        print("sleep for a bit")
+                        sleep(randint(200,500))
+                    else:
+                        print("you follow this man already. No need to like and follow")
                 except tweepy.TweepError as e:
                     print(e.reason)
-                    print("sleep for 10")
-                    sleep(10)
+                    print("sleep for 30")
+                    sleep(30)
                 except StopIteration:
                     print("For some reason program stoped")
                     break

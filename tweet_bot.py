@@ -37,25 +37,27 @@ def like_retweet():
     while True:
         random.shuffle(tags)
         for search in tags:
-            for tweet in tweepy.Cursor(api.search, search).items(randint(5,30)):
+            for tweet in tweepy.Cursor(api.search, search).items(randint(5,15)):
                 try:
+                    user_name=tweet.user.screen_name
+                    author_name=tweet.author.screen_name
                     user_id=tweet.user.id
                     author_id=tweet.author.id
                     i_followed=api.followers_ids(api.me().id)
                     if user_id or author_id not in i_followed:
-                        print("this peson not in I Followed list")
+                        print(f" -- [{user_name} / {author_name}] is not in i followd list -- ")
                         tweet.favorite()
-                        print(">>>>>==== Tweet Liked ====<<<<<<")
+                        print(f" -- Tweet Liked [{user_name} / {author_name}] -- ")
                         print("sleep for bit")
                         sleep(randint(3,7))   
                         tweet.retweet()
-                        print(">>>>==== ReTweet ====<<<<<")
+                        print(f" -- Tweet retweeted [{user_name} / {author_name}] -- ")
                         print("sleep for bit")
                         sleep(randint(3,7))
                         api.create_friendship(screen_name=tweet.author.screen_name)
-                        print(">>>>==== Followed ====<<<<")
+                        print(f" -- Followed [{author_name}] -- ")
                         print("sleep for a bit")
-                        sleep(randint(100,450))
+                        sleep(randint(200,550))
                     else:
                         print("you follow this man already. No need to like and follow")
                 except tweepy.TweepError as e:
@@ -77,8 +79,7 @@ def unfollow_who_dont_follow_me():
             if friend not in followers:
                 api.destroy_friendship(friend)
                 print(f"Unfollow user id : {friend}")
-                sleep(randint(800,1800))
-
+                sleep(randint(600,1600))
 def trending_now():
     while True:
         trends = api.trends_place(1)
@@ -95,15 +96,15 @@ def trending_now():
                     if trend_author_id or trend_user_id not in trending_followed:
                         print(f" -- [{trend_tweet_user_name} / {trend_tweet_author_name}] is not in followers list -- ")
                         tweets_in_trand.favorite()
-                        print(f" -- Tweet Liked [{trend_tweet_user_name} / {trend_tweet_author_name}] -- ")
+                        print(f" -- Trending Tweet Liked [{trend_tweet_user_name} / {trend_tweet_author_name}] -- ")
                         sleep(randint(2,5))
                         tweets_in_trand.retweet()
-                        print(f" -- Tweet retweeted [{trend_tweet_user_name} / {trend_tweet_author_name}] -- ")
+                        print(f" -- Trending Tweet retweeted [{trend_tweet_user_name} / {trend_tweet_author_name}] -- ")
                         sleep(randint(2,5))
                         api.create_friendship(screen_name=tweets_in_trand.author.screen_name)
-                        print(f" -- Followed [{trend_tweet_author_name}] -- ")
+                        print(f" -- Trending topic user Followed [{trend_tweet_author_name}] -- ")
                         print("[ -- sleep for bit -- ]")
-                        sleep(randint(75,350))
+                        sleep(randint(120,550))
                     else:
                         print(f"oo -- [{trend_tweet_user_name} / {trend_tweet_author_name}] already followed. No need to like and follow -- oo")
                 except tweepy.TweepError as e:

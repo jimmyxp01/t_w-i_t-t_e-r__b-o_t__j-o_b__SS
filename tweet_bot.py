@@ -43,7 +43,7 @@ def like_retweet():
                     author_name=tweet.author.screen_name
                     user_id=tweet.user.id
                     author_id=tweet.author.id
-                    i_followed=api.followers_ids(api.me().id)
+                    i_followed=api.friends_ids(api.me().id)
                     if user_id or author_id not in i_followed:
                         print(f" -- [{user_name} / {author_name}] is not in i followd list -- ")
                         tweet.favorite()
@@ -92,7 +92,7 @@ def trending_now():
                     trend_tweet_user_name=tweets_in_trand.user.screen_name
                     trend_author_id=tweets_in_trand.author.id
                     trend_user_id=tweets_in_trand.user.id
-                    trending_followed=api.followers_ids(api.me().id)
+                    trending_followed=api.friends_ids(api.me().id)
                     if trend_author_id or trend_user_id not in trending_followed:
                         print(f" -- [{trend_tweet_user_name} / {trend_tweet_author_name}] is not in followers list -- ")
                         tweets_in_trand.favorite()

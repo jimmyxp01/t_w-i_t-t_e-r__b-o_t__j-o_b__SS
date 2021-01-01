@@ -57,7 +57,7 @@ def like_retweet():
                         api.create_friendship(screen_name=tweet.author.screen_name)
                         print(f" -- Followed [{author_name}] -- ")
                         print("sleep for a bit")
-                        sleep(randint(200,550))
+                        sleep(randint(550,1000))
                     else:
                         print("you follow this man already. No need to like and follow")
                 except tweepy.TweepError as e:
@@ -79,7 +79,7 @@ def unfollow_who_dont_follow_me():
             if friend not in followers:
                 api.destroy_friendship(friend)
                 print(f"Unfollow user id : {friend}")
-                sleep(randint(600,1600))
+                sleep(randint(300,2000))
 def trending_now():
     while True:
         trends = api.trends_place(1)

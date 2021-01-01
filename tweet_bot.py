@@ -93,6 +93,7 @@ def trending_now():
                     trend_author_id=tweets_in_trand.author.id
                     trend_user_id=tweets_in_trand.user.id
                     trending_followed=api.friends_ids(api.me().id)
+                    sleep(randint(120,550))
                     if trend_author_id or trend_user_id not in trending_followed:
                         print(f" -- [{trend_tweet_user_name} / {trend_tweet_author_name}] is not in followers list -- ")
                         tweets_in_trand.favorite()
@@ -104,7 +105,6 @@ def trending_now():
                         api.create_friendship(screen_name=tweets_in_trand.author.screen_name)
                         print(f" -- Trending topic user Followed [{trend_tweet_author_name}] -- ")
                         print("[ -- sleep for bit -- ]")
-                        sleep(randint(120,550))
                     else:
                         print(f"oo -- [{trend_tweet_user_name} / {trend_tweet_author_name}] already followed. No need to like and follow -- oo")
                 except tweepy.TweepError as e:

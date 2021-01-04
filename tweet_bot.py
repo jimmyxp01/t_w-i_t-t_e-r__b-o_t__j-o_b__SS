@@ -17,6 +17,8 @@ auth.set_access_token(ACCESS_KEY,ACCESS_SECRET)
 
 api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
+my_id=api.me().id
+
 tags=["#photographylovers", "#hautsdefrance",
 "#NaturePhotography", "#photooftheday",
 "#naturelovers", "#naturephoto",
@@ -38,82 +40,89 @@ def like_retweet():
         random.shuffle(tags)
         for search in tags:
             for tweet in tweepy.Cursor(api.search, search).items(randint(5,15)):
-                try:
-                    user_name=tweet.user.screen_name
-                    author_name=tweet.author.screen_name
-                    user_id=tweet.user.id
-                    author_id=tweet.author.id
-                    i_followed=api.friends_ids(api.me().id)
-                    if user_id or author_id not in i_followed:
-                        print(f" -- [{user_name} / {author_name}] is not in i followd list -- ")
-                        tweet.favorite()
-                        print(f" -- Tweet Liked [{user_name} / {author_name}] -- ")
-                        print("sleep for bit")
-                        sleep(randint(3,7))   
-                        tweet.retweet()
-                        print(f" -- Tweet retweeted [{user_name} / {author_name}] -- ")
-                        print("sleep for bit")
-                        sleep(randint(3,7))
-                        api.create_friendship(screen_name=tweet.author.screen_name)
-                        print(f" -- Followed [{author_name}] -- ")
-                        print("sleep for a bit")
-                        sleep(randint(300,600))
-                    else:
-                        print("you follow this man already. No need to like and follow")
-                except tweepy.TweepError as e:
-                    print(e.reason)
-                    print("sleep for 30")
-                    sleep(30)
-                except StopIteration:
-                    print("For some reason program stoped")
-                    break
+                user_name=tweet.user.screen_name
+                author_name=tweet.author.screen_name
+                user_id=tweet.user.id
+                author_id=tweet.author.id
+                i_followed=api.friends_ids(api.me().id)
+                if user_id != my_id:
+                    if author_id not in i_followed:
+                        try:
+                            print(f"[INFO] -- [{user_name} / {author_name}] is not in i followd list -- ")
+                            tweet.favorite()
+                            print(f"[INFO] -- Tweet Liked [{user_name} / {author_name}] -- ")
+                            print("[INFO] sleep for bit")
+                            sleep(randint(3,7))   
+                            tweet.retweet()
+                            print(f"[INFO] -- Tweet retweeted [{user_name} / {author_name}] -- ")
+                            print("[INFO]sleep for bit")
+                            sleep(randint(3,7))
+                            api.create_friendship(screen_name=tweet.author.screen_name)
+                            print(f"[INFO] -- Followed [{author_name}] -- ")
+                            print("[INFO] sleep for a bit")
+                            sleep(randint(500,900))
+                        except tweepy.TweepError as e:
+                            print(e.reason)
+                            print("[WARNING] sleep for 30")
+                            sleep(30)
+                        except StopIteration:
+                            print("[WARNING] For some reason program stoped")
+                    if author_id in i_followed:
+                        print("[WARNING] [ -- You follow this man already. No need to like and follow -- ]")
+                if user_id == my_id:
+                    print("[WARNING] [---------------------]")
+
 
 def unfollow_who_dont_follow_me():
     while True:
         followers = api.followers_ids(api.me().id)
-        print("Followers", len(followers))
+        print("[INFO] Followers", len(followers))
         friends = api.friends_ids(api.me().id)
-        print("You follow:", len(friends))
+        print("[INFO] You follow:", len(friends))
 
         for friend in friends[::-1]:
             if friend not in followers:
                 api.destroy_friendship(friend)
-                print(f"Unfollow user id : {friend}")
-                sleep(randint(100,400))
+                print(f"[INFO] -- Unfollow user id : {friend}")
+                sleep(randint(70,300))
+
 def trending_now():
     while True:
+        sleep(randint(2000,3600))
         trends = api.trends_place(1)
         trending_hashtags = [trend['name'] for trend in trends[0]['trends'] if trend['name'].startswith('#')]
         for hashtag in trending_hashtags:
             print(hashtag)
-            for tweets_in_trand in tweepy.Cursor(api.search, hashtag).items(randint(2,8)):
-                try:
-                    trend_tweet_author_name=tweets_in_trand.author.screen_name
-                    trend_tweet_user_name=tweets_in_trand.user.screen_name
-                    trend_author_id=tweets_in_trand.author.id
-                    trend_user_id=tweets_in_trand.user.id
-                    trending_followed=api.friends_ids(api.me().id)
-                    sleep(randint(700,1400))
-                    if trend_author_id or trend_user_id not in trending_followed:
-                        print(f" -- [{trend_tweet_user_name} / {trend_tweet_author_name}] is not in followers list -- ")
-                        tweets_in_trand.favorite()
-                        print(f" -- Trending Tweet Liked [{trend_tweet_user_name} / {trend_tweet_author_name}] -- ")
-                        sleep(randint(2,5))
-                        tweets_in_trand.retweet()
-                        print(f" -- Trending Tweet retweeted [{trend_tweet_user_name} / {trend_tweet_author_name}] -- ")
-                        sleep(randint(2,5))
-                        api.create_friendship(screen_name=tweets_in_trand.author.screen_name)
-                        print(f" -- Trending topic user Followed [{trend_tweet_author_name}] -- ")
-                        print("[ -- sleep for bit -- ]")
-                    else:
-                        print(f"oo -- [{trend_tweet_user_name} / {trend_tweet_author_name}] already followed. No need to like and follow -- oo")
-                except tweepy.TweepError as e:
-                    print(e.reason)
-                    print("-- [ sleep for 30 ] --")
-                    sleep(30)
-                except StopIteration:
-                    print("---- For some reason [ trending now ] function stoped ----")
-                    break
+            for tweets_in_trand in tweepy.Cursor(api.search, hashtag).items(randint(1,4)):
+                trend_tweet_author_name=tweets_in_trand.author.screen_name
+                trend_tweet_user_name=tweets_in_trand.user.screen_name
+                trend_author_id=tweets_in_trand.author.id
+                trend_user_id=tweets_in_trand.user.id
+                trending_followed=api.friends_ids(api.me().id)
+                if trend_user_id !=my_id:
+                    if trend_author_id not in trending_followed:
+                        try:
+                            print(f"[INFO] -- [{trend_tweet_user_name} / {trend_tweet_author_name}] is not in followers list -- ")
+                            tweets_in_trand.favorite()
+                            print(f"[INFO] -- Tweet Liked [{trend_tweet_user_name} / {trend_tweet_author_name}] -- ")
+                            sleep(randint(2,5))
+                            tweets_in_trand.retweet()
+                            print(f"[INFO] -- Tweet retweeted [{trend_tweet_user_name} / {trend_tweet_author_name}] -- ")
+                            sleep(randint(2,5))
+                            api.create_friendship(screen_name=tweets_in_trand.author.screen_name)
+                            print(f"[INFO] -- Followed [{trend_tweet_author_name}] -- ")
+                            print("[INFO] -- sleep for bit -- ]")
+                        except tweepy.TweepError as e:
+                            print(e.reason)
+                            print("[WARNING] -- [ sleep for 30 ] --")
+                            sleep(30)
+                        except StopIteration:
+                            print("[WARNING] ---- For some reason [ trending now ] function stoped ----")
+                    if trend_author_id in trending_followed:
+                        print(f"oo -- [WARNING] [{trend_tweet_user_name}/{trend_tweet_author_name}] already followed. No need to like and follow -- oo")
+                if trend_user_id == my_id:
+                    print("[WARNING] [---------------------]")
+
 
 if __name__ == "__main__":
     t1=Process(target=like_retweet)

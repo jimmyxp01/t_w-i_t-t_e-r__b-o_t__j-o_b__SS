@@ -89,7 +89,7 @@ def unfollow_who_dont_follow_me():
 def trending_now():
     while True:
         sleep(randint(2000,3600))
-        trends = api.trends_place(1)
+        trends = api.trends_place(23424977)
         trending_hashtags = [trend['name'] for trend in trends[0]['trends'] if trend['name'].startswith('#')]
         for hashtag in trending_hashtags:
             print(hashtag)
@@ -131,6 +131,3 @@ if __name__ == "__main__":
     t1.start()
     t2.start()
     t3.start()
-    t1.join()
-    t2.join()
-    t3.join()

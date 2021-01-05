@@ -84,11 +84,10 @@ def unfollow_who_dont_follow_me():
             if friend not in followers:
                 api.destroy_friendship(friend)
                 print(f"[INFO] -- Unfollow user id : {friend}")
-                sleep(randint(70,300))
+                sleep(randint(300,1000))
 
 def trending_now():
     while True:
-        sleep(randint(2000,3600))
         trends = api.trends_place(23424977)
         trending_hashtags = [trend['name'] for trend in trends[0]['trends'] if trend['name'].startswith('#')]
         for hashtag in trending_hashtags:
@@ -108,9 +107,10 @@ def trending_now():
                             sleep(randint(2,5))
                             tweets_in_trand.retweet()
                             print(f"[INFO] -- Tweet retweeted [{trend_tweet_user_name} / {trend_tweet_author_name}] -- ")
-                            sleep(randint(2,5))
+                            #sleep(randint(2,5))
                             #api.create_friendship(screen_name=tweets_in_trand.author.screen_name)
                             #print(f"[INFO] -- Followed [{trend_tweet_author_name}] -- ")
+                            sleep(randint(2000,3600))
                             print("[INFO] -- sleep for bit -- ]")
                         except tweepy.TweepError as e:
                             print(e.reason)

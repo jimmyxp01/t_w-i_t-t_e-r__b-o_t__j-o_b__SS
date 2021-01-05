@@ -60,7 +60,7 @@ def like_retweet():
                             api.create_friendship(screen_name=tweet.author.screen_name)
                             print(f"[INFO] -- Followed [{author_name}] -- ")
                             print("[INFO] sleep for a bit")
-                            sleep(randint(500,900))
+                            sleep(randint(300,900))
                         except tweepy.TweepError as e:
                             print(e.reason)
                             print("[WARNING] sleep for 30")
@@ -109,8 +109,8 @@ def trending_now():
                             tweets_in_trand.retweet()
                             print(f"[INFO] -- Tweet retweeted [{trend_tweet_user_name} / {trend_tweet_author_name}] -- ")
                             sleep(randint(2,5))
-                            api.create_friendship(screen_name=tweets_in_trand.author.screen_name)
-                            print(f"[INFO] -- Followed [{trend_tweet_author_name}] -- ")
+                            #api.create_friendship(screen_name=tweets_in_trand.author.screen_name)
+                            #print(f"[INFO] -- Followed [{trend_tweet_author_name}] -- ")
                             print("[INFO] -- sleep for bit -- ]")
                         except tweepy.TweepError as e:
                             print(e.reason)

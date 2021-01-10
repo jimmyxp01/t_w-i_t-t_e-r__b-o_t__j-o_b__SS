@@ -70,7 +70,7 @@ def like_retweet():
                             api.create_friendship(screen_name=tweet.author.screen_name)
                             print(f"[INFO] -- Followed [{author_name}] -- ")
                             print("[INFO] sleep for a bit")
-                            sleep(randint(500,1000))
+                            sleep(randint(400,1000))
                         except tweepy.TweepError as e:
                             print(e.reason)
                             print("[WARNING] sleep for 30")

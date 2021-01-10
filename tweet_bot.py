@@ -19,20 +19,30 @@ api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
 my_id=api.me().id
 
-tags=["#photographylovers", "#hautsdefrance",
-"#NaturePhotography", "#photooftheday",
-"#naturelovers", "#naturephoto",
-"#TwitterNatureCommunity", "#ePHOTOzine",
-"#byroberteklund","#sonyalphaphotography", "#sonyalphaphotos", "#roberteklund", "#stockholm", "#sweden", "#sergelstorg", "#stockholmcity",
-"#cityphotography", "#cityphoto", "#stockholmphoto", "#stockholmphotography", "#streetphotography", "#wetstreets", "#nofilter",
-"#FranceMagique",  "#nature", "#sunset", "#autumncolours", "#fallcolors",
-"#photoimaginart", "#photooftheday", "#stilllife","#PhotoOfTheDay", "#PicOfTheDay", "#InstaLike", "#City", "#Skyline", 
-"#Skyscraper", "#Design", "#instagood", "#happy", "#travel", "#fly", "#2021","#goodmorning",
-"#stilllifepainting", "#stilllifephotos", "#stilllifephotography", "#artphoto",
-"#artphotography", "#fineartphotography", "#fineartphotos", "#photography", "#PHOTOS",
-"#bestphoto", "#photoart", "#creativephotos", "#ArtLovers", "#photo",
-"#photographie", "#landscapephotography","#BeKind", "#HOPE", "#inmygarden",  "#mondaythoughts", "#birdwatching", "#beautiful",
-"#blessed", "#ThePhotoHour"]
+tags=['#naturephotograph','#nature','#naturephotography','#photography',
+    '#naturephotographer','#naturelovers','#naturephoto',
+    '#photographer','#naturelover','#naturephotos',
+    '#landscapephotography','#landscape','#photo',
+    '#hiking','#travelphotography','#photooftheday','#wildlifephoto','#travel',
+    '#scenery','#wildlife','#natureisbeautiful',
+    '#naturephotographers','#naturephotoshoot',
+    '#wildlifeonearth','#mothernature','#beautiful',
+    '#birdphotography','#animalphotography','#wildlifephotos','#naturepic',
+    '#natureaddict','#landscape_captures','#awesomeearth',
+    '#awesome_earthpix','#nature_wizards',
+    '#naturegram','#rsa_rural','#main_vision',
+    '#allnatureshots','#naturediversity','#instanaturelover','#naturelove',
+    '#nature_prefection','#gottalove_a_','#sky','#explore','#sunset','#mountains'
+    '#bestphoto','#edit', '#love','#picoftheday','#edits','#instagood',
+    '#art','#aesthetic','#photoshoot',
+    '#music','#fashion','#photoshop','#instagram','#beauty',
+    '#follow','#newyork','#like','#meme','#artist','#instaphoto','#tumblr','#amazing',
+    '#cityphotography','#city','#streetphotography','#photography',
+    '#cityscape','#photooftheday','#travel','#citylife','#travelphotography',
+    '#urbanphotography','#newyork','#nyc','#usa','#architecture','#cityview',
+    '#urban','#newyorkcity','#photographer','#picoftheday','#travelgram',
+    '#architecturephotography','#street','#manhattan','#instagood','#art',
+    '#beautiful','#washingtondc','#exploretocreate','#explore']
 
 
 def like_retweet():
@@ -60,7 +70,7 @@ def like_retweet():
                             api.create_friendship(screen_name=tweet.author.screen_name)
                             print(f"[INFO] -- Followed [{author_name}] -- ")
                             print("[INFO] sleep for a bit")
-                            sleep(randint(600,1200))
+                            sleep(randint(500,1000))
                         except tweepy.TweepError as e:
                             print(e.reason)
                             print("[WARNING] sleep for 30")
@@ -70,7 +80,7 @@ def like_retweet():
                     if author_id in i_followed:
                         print("[WARNING] [ -- You follow this man already. No need to like and follow -- ]")
                 if user_id == my_id:
-                    print("[WARNING] [---------------------]")
+                    print("[WARNING] [----------like_retweet-----------]")
 
 
 def unfollow_who_dont_follow_me():
@@ -110,7 +120,7 @@ def trending_now():
                             #sleep(randint(2,5))
                             #api.create_friendship(screen_name=tweets_in_trand.author.screen_name)
                             #print(f"[INFO] -- Followed [{trend_tweet_author_name}] -- ")
-                            sleep(randint(2000,3600))
+                            sleep(randint(3000,4000))
                             print("[INFO] -- sleep for bit -- ]")
                         except tweepy.TweepError as e:
                             print(e.reason)
@@ -121,7 +131,7 @@ def trending_now():
                     if trend_author_id in trending_followed:
                         print(f"oo -- [WARNING] [{trend_tweet_user_name}/{trend_tweet_author_name}] already followed. No need to like and follow -- oo")
                 if trend_user_id == my_id:
-                    print("[WARNING] [---------------------]")
+                    print("[WARNING] [-----------trending_now----------]")
 
 
 if __name__ == "__main__":

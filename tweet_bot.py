@@ -32,7 +32,7 @@ tags=['#naturephotograph','#nature','#naturephotography','#photography',
     '#awesome_earthpix','#nature_wizards',
     '#naturegram','#rsa_rural','#main_vision',
     '#allnatureshots','#naturediversity','#instanaturelover','#naturelove',
-    '#nature_prefection','#gottalove_a_','#sky','#explore','#sunset','#mountains'
+    '#nature_prefection','#gottalove_a_','#sky','#explore','#sunset','#mountains',
     '#bestphoto','#edit', '#love','#picoftheday','#edits','#instagood',
     '#art','#aesthetic','#photoshoot',
     '#music','#fashion','#photoshop','#instagram','#beauty',
